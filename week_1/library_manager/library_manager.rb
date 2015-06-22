@@ -1,7 +1,6 @@
-require "date"
 
 class LibraryManager
-
+  require "date"
   FINE_RATE = 0.1      #Размер пени в процентах
   FINE = FINE_RATE/100
 
