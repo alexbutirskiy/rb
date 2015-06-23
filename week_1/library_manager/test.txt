@@ -67,14 +67,8 @@
 Гаращенко	Harashchenko
 Юрій		Yurii
 Корюківка	Koriukivka
-
-Яготин
-Yahotyn
-Ярошенко
-Yaroshenko
-Костянтин
-Kostiantyn
-Знам’янка
-Znamianka
-Феодосія
-Feodosiia
+Яготин		Yahotyn
+Ярошенко	Yaroshenko
+Костянтин	Kostiantyn
+Знам’янка	Znamianka
+Феодосія	Feodosiia
