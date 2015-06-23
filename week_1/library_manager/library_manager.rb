@@ -16,7 +16,7 @@ class LibraryManager
   # Возвращаемое значение 
   # - пеня в центах
   def penalty price, issue_datetime
-    res = (price * FINE * (DateTime.now.new_offset(0) - issue_datetime)*24).floor
+    res = (price * FINE * (DateTime.now.new_offset(0) - issue_datetime)*24).round
     res > 0 ? res : 0
   end
 
@@ -96,48 +96,7 @@ class LibraryManager
   def penalty_to_finish price, issue_datetime, pages_quantity, current_page, reading_speed
     exp = DateTime.now.new_offset(0) + (pages_quantity - current_page).to_f / reading_speed / 24
     res = (price * FINE * (exp - issue_datetime)*24)
-    res > 0 ? res : 0
+    res > 0 ? res.round : 0
   end
 
-end
-
-if __FILE__ == $0
-print "Test1. Fee value is ", (LibraryManager.new.penalty(100, DateTime.parse('12.06.2015 15:40'))), "\n"
-print "Test 2.1: Must be false: ", LibraryManager.new.could_meet_each_other?(1,10,12,15), "\n"
-print "Test 2.2: Must be true: ", LibraryManager.new.could_meet_each_other?(1,12,10,15), "\n"
-print "Test 2.3: Must be true: ", LibraryManager.new.could_meet_each_other?(1,10,2,9), "\n"
-print "Test 2.4: Must be true: ", LibraryManager.new.could_meet_each_other?(1,10,-2,15), "\n"
-print "Test 2.5: Must be true: ", LibraryManager.new.could_meet_each_other?(1,10,-2,3), "\n"
-print "Test 2.6: Must be false: ", LibraryManager.new.could_meet_each_other?(1,10,-2,0), "\n"
-puts "Test 3. Max days = #{LibraryManager.new.days_to_buy 100}"
-puts "Test 4. ", LibraryManager.new.author_translit('Гнат Хоткевич')
-
-translit_dim = [ ["Алушта", "Alushta"], ["Андрій", "Andrii"], ["Борщагівка", "Borshchahivka"], ["Борисенко", "Borysenko"], 
-    ["Вінниця", "Vinnytsia"], ["Володимир", "Volodymyr"], ["Гадяч", "Hadiach"], ["Богдан", "Bohdan"], ["Згурський", "Zghurskyi"], 
-    ["Ґалаґан", "Galagan"], ["Ґорґани", "Gorgany"], ["Донецьк", "Donetsk"], ["Дмитро", "Dmytro"], ["Рівне", "Rivne"], 
-    ["Олег", "Oleh"], ["Есмань", "Esman"], ["Єнакієве", "Yenakiieve"], ["Гаєвич", "Haievych"], ["Короп’є", "Koropie"], 
-    ["Житомир", "Zhytomyr"], ["Жанна", "Zhanna"], ["Жежелів", "Zhezheliv"], ["Закарпаття", "Zakarpattia"], 
-    ["Казимирчук", "Kazymyrchuk"], ["Медвин", "Medvyn"], ["Михайленко", "Mykhailenko"], ["Іванків", "Ivankiv"], 
-    ["Іващенко", "Ivashchenko"], ["Їжакевич", "Yizhakevych"], ["Кадиївка", "Kadyivka"], ["Мар’їне", "Marine"], 
-    ["Йосипівка", "Yosypivka"], ["Стрий", "Stryi"], ["Олексій", "Oleksii"], ["Київ", "Kyiv"], ["Коваленко", "Kovalenko"], 
-    ["Лебедин", "Lebedyn"], ["Леонід", "Leonid"], ["Миколаїв", "Mykolaiv"], ["Маринич", "Marynych"], ["Ніжин", "Nizhyn"], 
-    ["Наталія", "Nataliia"], ["Одеса", "Odesa"], ["Онищенко", "Onyshchenko"], ["Полтава", "Poltava"], ["Петро", "Petro"], 
-    ["Решетилівка", "Reshetylivka"], ["Рибчинський", "Rybchynskyi"], ["Суми", "Sumy"], ["Соломія", "Solomiia"], 
-    ["Тернопіль", "Ternopil"], ["Троць", "Trots"], ["Ужгород", "Uzhhorod"], ["Уляна", "Uliana"], ["Фастів", "Fastiv"], 
-    ["Філіпчук", "Filipchuk"], ["Харків", "Kharkiv"], ["Христина", "Khrystyna"], ["Біла Церква", "Bila Tserkva"], ["Стеценко", "Stetsenko"], 
-    ["Чернівці", "Chernivtsi"], ["Шевченко", "Shevchenko"], ["Шостка", "Shostka"], ["Кишеньки", "Kyshenky"], 
-    ["Щербухи", "Shcherbukhy"], ["Гоща", "Hoshcha"], ["Гаращенко", "Harashchenko"], ["Юрій", "Yurii"], 
-    ["Корюківка", "Koriukivka"], ["Яготин", "Yahotyn"], ["Ярошенко", "Yaroshenko"], ["Костянтин", "Kostiantyn"], 
-    ["Знам’янка", "Znamianka"], ["Феодосія", "Feodosiia"]]
-0.upto(translit_dim.size-1) do |i|
-  res = LibraryManager.new.author_translit(translit_dim[i][0])
-  if res != translit_dim[i][1] then
-    print 'Test 4 Error: ', res, ' != ', translit_dim[i][1], "\n"
-  end
-end
-
-
-
-print "Test 5: ", (LibraryManager.new.penalty_to_finish 100, DateTime.parse('22.06.2015 15:40'), 254, 139, 10)
-puts''
 end
