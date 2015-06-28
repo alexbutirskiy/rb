@@ -1,6 +1,7 @@
 require "pry"
 
 class Author
+	# Author class
 	attr_accessor :name, :birth_date, :death_date
 
 	def initialize (name ='Unknown Author', birth = nil, death = nil)
@@ -11,8 +12,8 @@ class Author
 
 	def to_s
 		ret = "#{@name} "
-		ret += ( @birth_date != nil ? ("(#{@birth_date} - ") : "(??? - " )
-		ret += ( @death_date != nil ? ("#{@death_date})"):("???)") )
+		ret += ( @birth_date != nil ? ("(#{@birth_date}") : "(???" )
+		ret += ( @death_date != nil ? (" - #{@death_date})"):(")") )
 	end
 
 	def ==(arg)
@@ -29,7 +30,7 @@ end
 class Book
 	attr_accessor :title, :author
 
-	def initialize(title='No tittle', author = nil)
+	def initialize(title='No Title', author = nil)
 		@title = title
 		@author = author ? author : Author.new
 	end
