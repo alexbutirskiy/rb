@@ -1,3 +1,4 @@
+
 require "pry"
 
 class Author
@@ -27,6 +28,8 @@ class Author
 	alias eql? ==
 end
 
+#TODO Add type checking
+#TODO Add multyple author support
 class Book
 	attr_accessor :title, :author
 
@@ -36,7 +39,7 @@ class Book
 	end
 
 	def to_s
-		"#{@author.name} - #{@title}"
+		"#{@author.name} - \"#{@title}\""
 	end
 
 	def ==(arg)
@@ -51,13 +54,26 @@ class Book
 
 end
 
-if __FILE__ == $0
-a = Author.new("Leo Tolstoy", 1828, 1910)
-b = Author.new
-c = Author.new("Levi Matthew"); c.death_date = 74
+class Edition
+	attr_accessor :book, :year, :pages
 
-bb = Book.new("War and Peace", a)
+	def initialize( book=nil, year = nil, pages = nil )
+		book != nil ? @book = book : @book = Book.new
+		@year = year; @pages = pages
+	end
 
-binding.pry
-puts
+	def to_s
+		"#{@book.to_s}, #{@year}, #{pages}p."
+	end
+
+	def ==(arg)
+		if arg.class == Edition
+			@book == arg.book && @year == arg.year && @pages == arg.pages
+		else
+			false
+		end
+	end
+
+	alias eql? ==
+
 end
