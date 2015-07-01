@@ -1,4 +1,6 @@
-require './library_class.rb'
+require './author.rb'
+require './book.rb'
+require './edition.rb'
 
 describe Author, "class" do
 	before :each do
