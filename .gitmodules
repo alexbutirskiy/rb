@@ -1,0 +1,12 @@
+[submodule "week_1/ruby_bursa_task_1"]
+	path = week_1/ruby_bursa_task_1
+	url = git@github.com:alexbutirskiy/ruby_bursa_task_1.git
+[submodule "week_2/ruby_bursa_task_2"]
+	path = week_2/ruby_bursa_task_2
+	url = git@github.com:alexbutirskiy/ruby_bursa_task_2.git
+[submodule "week_3/ruby_bursa_task_3"]
+	path = week_3/ruby_bursa_task_3
+	url = git@github.com:alexbutirskiy/ruby_bursa_task_3.git
+[submodule "week_4/ruby_bursa_task_4"]
+	path = week_4/ruby_bursa_task_4
+	url = git@github.com:alexbutirskiy/ruby_bursa_task_4.git
